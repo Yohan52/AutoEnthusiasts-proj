@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best electric cars 2025 | AutoEnthusiasts</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #28a745;
+            --secondary-color: #f8f9fa;
+            --accent-color: #ffc107;
+            --text-dark: #343a40;
+            --text-light: #6c757d;
+            --border-color: #e9ecef;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .breadcrumb {
+            background-color: transparent;
+            padding: 0.75rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb-item a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        
+        .breadcrumb-item a:hover {
+            text-decoration: underline;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-header {
+            background-color: white;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.25rem 1.5rem;
+        }
+        
+        .thread-header {
+            background-color: white;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .badge {
+            font-weight: 500;
+            padding: 0.35em 0.65em;
+            margin-left: 0.5rem;
+        }
+        
+        .badge-primary {
+            background-color: var(--primary-color);
+        }
+        
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s;
+        }
+        
+        .user-avatar:hover {
+            transform: scale(1.05);
+            border-color: var(--primary-color);
+        }
+        
+        .reply-avatar {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .nested-reply-avatar {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .post-content {
+            line-height: 1.7;
+            color: var(--text-dark);
+        }
+        
+        .post-actions .btn {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.85rem;
+            border-radius: 20px;
+            transition: all 0.2s;
+        }
+        
+        .post-actions .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .like-btn:hover, .like-btn.active {
+            color: #dc3545;
+            border-color: #dc3545;
+        }
+        
+        .reply-btn:hover {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .nested-reply {
+            border-left: 3px solid var(--border-color);
+            padding-left: 1rem;
+            margin-left: 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .nested-reply:hover {
+            border-left-color: var(--primary-color);
+        }
+        
+        .reply-form textarea {
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+        
+        .reply-form textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.15);
+        }
+        
+        .formatting-toolbar .btn {
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+            transition: all 0.2s;
+        }
+        
+        .formatting-toolbar .btn:hover {
+            background-color: var(--border-color);
+            transform: scale(1.1);
+        }
+        
+        .post-time {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        
+        .post-time:hover {
+            color: var(--text-dark);
+        }
+        
+        .user-name {
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: all 0.2s;
+        }
+        
+        .user-name:hover {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .highlight-post {
+            animation: highlight 2s ease-out;
+            border-left: 3px solid var(--primary-color);
+        }
+        
+        @keyframes highlight {
+            0% { background-color: rgba(40, 167, 69, 0.2); }
+            100% { background-color: transparent; }
+        }
+        
+        .jump-to-reply {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .jump-to-reply:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .vote-count {
+            min-width: 30px;
+            display: inline-block;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        /* Animation for new replies */
+        .new-reply {
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <main class="container my-4">
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Breadcrumb -->
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html"><i class="fas fa-home me-1"></i>Home</a></li>
+                        <li class="breadcrumb-item"><a href="categories.html"><i class="fas fa-list me-1"></i>Categories</a></li>
+                        <li class="breadcrumb-item"><a href="threads.html?category=cars"><i class="fas fa-car me-1"></i>Cars</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Best electric cars 2025</li>
+                    </ol>
+                </nav>
+                
+                <!-- Thread Header -->
+                <div class="card thread-header mb-3">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h1 class="h3 mb-0"><i class="fas fa-bolt text-warning me-2"></i>Best electric cars 2025</h1>
+                            <div>
+                                <span class="badge bg-primary"><i class="fas fa-comments me-1"></i>25 replies</span>
+                                <span class="badge bg-secondary"><i class="fas fa-eye me-1"></i>1,245 views</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Original Post -->
+                <div class="card mb-4" id="original-post">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                                <img src="images/avatar1.jpg" class="user-avatar rounded-circle" alt="EVFan's avatar">
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <a href="#" class="user-name text-decoration-none">EVFan</a>
+                                    <small class="post-time" title="Posted on June 12, 2025 at 3:45 PM"><i class="far fa-clock me-1"></i>2 days ago</small>
+                                </div>
+                                <div class="post-content mb-3">
+                                    <p>I'm in the market for a new electric car and want to know what's coming in 2025. I've been following the Tesla Model 3 refresh, but I'm also interested in what other manufacturers are bringing to the table. What are you most excited about? Any hidden gems I should be aware of?</p>
+                                    <p>My budget is around $50,000 and I'm looking for something with at least 300 miles of range. I do a lot of highway driving, so good highway efficiency is important.</p>
+                                </div>
+                                <div class="post-actions">
+                                    <button class="btn btn-sm btn-outline-primary like-btn me-2">
+                                        <i class="fas fa-thumbs-up me-1"></i>
+                                        <span class="vote-count">24</span>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-secondary reply-btn me-2">
+                                        <i class="fas fa-reply me-1"></i>Reply
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-secondary">
+                                        <i class="fas fa-share me-1"></i>Share
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Replies Section -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-comments me-2"></i>Replies</h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Reply 1 -->
+                        <div class="d-flex mb-4" id="reply-1">
+                            <div class="flex-shrink-0 me-3">
+                                <img src="images/avatar2.jpg" class="reply-avatar rounded-circle" alt="TeslaLover's avatar">
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <a href="#" class="user-name text-decoration-none">TeslaLover</a>
+                                    <small class="post-time" title="Posted on June 13, 2025 at 10:15 AM"><i class="far fa-clock me-1"></i>1 day ago</small>
+                                </div>
+                                <div class="post-content mb-3">
+                                    <p>The new Tesla Model 3 refresh (codenamed Highland) looks really promising. They've improved the suspension for a smoother ride, added ventilated seats, and the interior looks more premium. Range is expected to be about 10% better too.</p>
+                                    <p>The base model should start around $42,000 and get about 330 miles of range. If you can stretch your budget, the Performance version is rumored to hit 0-60 in under 3 seconds.</p>
+                                </div>
+                                <div class="post-actions">
+                                    <button class="btn btn-sm btn-outline-primary like-btn me-2">
+                                        <i class="fas fa-thumbs-up me-1"></i>
+                                        <span class="vote-count">18</span>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-secondary reply-btn me-2">
+                                        <i class="fas fa-reply me-1"></i>Reply
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Reply 2 -->
+                        <div class="d-flex mb-4" id="reply-2">
+                            <div class="flex-shrink-0 me-3">
+                                <img src="images/avatar3.jpg" class="reply-avatar rounded-circle" alt="EVExpert's avatar">
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <a href="#" class="user-name text-decoration-none">EVExpert</a>
+                                    <small class="post-time" title="Posted on June 13, 2025 at 2:30 PM"><i class="far fa-clock me-1"></i>1 day ago</small>
+                                </div>
+                                <div class="post-content mb-3">
+                                    <p>Don't overlook the Hyundai Ioniq 6. It's got great range (over 300 miles), super fast charging, and a really unique design. The 2025 model is expected to get some battery improvements that should push the range even further.</p>
+                                    <p>They're also adding a new "Eco" mode that optimizes efficiency for highway driving. I test drove one last week and was getting about 4.2 miles per kWh at 70 mph, which is excellent for an EV.</p>
+                                </div>
+                                <div class="post-actions">
+                                    <button class="btn btn-sm btn-outline-primary like-btn me-2">
+                                        <i class="fas fa-thumbs-up me-1"></i>
+                                        <span class="vote-count">15</span>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-secondary reply-btn me-2">
+                                        <i class="fas fa-reply me-1"></i>Reply
+                                    </button>
+                                </div>
+                                
+                                <!-- Nested Reply -->
+                                <div class="d-flex mt-4 nested-reply" id="reply-3">
+                                    <div class="flex-shrink-0 me-3">
+                                        <img src="images/avatar4.jpg" class="nested-reply-avatar rounded-circle" alt="HyundaiFan's avatar">
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <a href="#" class="user-name text-decoration-none">HyundaiFan</a>
+                                            <small class="post-time" title="Posted on June 14, 2025 at 8:45 AM"><i class="far fa-clock me-1"></i>20 hours ago</small>
+                                        </div>
+                                        <div class="post-content mb-3">
+                                            <p>I own an Ioniq 5 and can confirm Hyundai's EVs are excellent. The 800V architecture means you can charge from 10-80% in under 18 minutes at a fast charger. The 2025 Ioniq 6 is rumored to get even faster charging.</p>
+                                            <p>Also worth noting: Hyundai has one of the best warranty packages in the industry - 10 years/100,000 miles on the battery.</p>
+                                        </div>
+                                        <div class="post-actions">
+                                            <button class="btn btn-sm btn-outline-primary like-btn me-2">
+                                                <i class="fas fa-thumbs-up me-1"></i>
+                                                <span class="vote-count">8</span>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-secondary reply-btn me-2">
+                                                <i class="fas fa-reply me-1"></i>Reply
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- New Reply Form -->
+                        <div class="card mt-4" id="reply-form">
+                            <div class="card-header">
+                                <h5 class="mb-0"><i class="fas fa-reply me-2"></i>Post a Reply</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="newReplyForm">
+                                    <div class="mb-3">
+                                        <textarea class="form-control" rows="5" placeholder="Write your reply..." required></textarea>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="formatting-toolbar">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary" title="Bold">
+                                                <i class="fas fa-bold"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary" title="Italic">
+                                                <i class="fas fa-italic"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary" title="Link">
+                                                <i class="fas fa-link"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary" title="Image">
+                                                <i class="fas fa-image"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary" title="Code">
+                                                <i class="fas fa-code"></i>
+                                            </button>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary px-4">
+                                            <i class="fas fa-paper-plane me-2"></i>Post Reply
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Thread Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span><i class="fas fa-user me-2"></i>Started by</span>
+                                <a href="#" class="text-decoration-none">EVFan</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span><i class="fas fa-calendar me-2"></i>Created</span>
+                                <span>June 12, 2025</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span><i class="fas fa-sync me-2"></i>Last reply</span>
+                                <span>20 hours ago</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span><i class="fas fa-tag me-2"></i>Tags</span>
+                                <div>
+                                    <span class="badge bg-primary me-1">EV</span>
+                                    <span class="badge bg-primary">2025</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-users me-2"></i>Participants</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="images/avatar1.jpg" class="rounded-circle me-3" width="40" height="40" alt="EVFan">
+                            <div>
+                                <a href="#" class="text-decoration-none">EVFan</a>
+                                <div class="small text-muted">Thread starter</div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="images/avatar2.jpg" class="rounded-circle me-3" width="40" height="40" alt="TeslaLover">
+                            <div>
+                                <a href="#" class="text-decoration-none">TeslaLover</a>
+                                <div class="small text-muted">1 reply</div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="images/avatar3.jpg" class="rounded-circle me-3" width="40" height="40" alt="EVExpert">
+                            <div>
+                                <a href="#" class="text-decoration-none">EVExpert</a>
+                                <div class="small text-muted">1 reply</div>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <img src="images/avatar4.jpg" class="rounded-circle me-3" width="40" height="40" alt="HyundaiFan">
+                            <div>
+                                <a href="#" class="text-decoration-none">HyundaiFan</a>
+                                <div class="small text-muted">1 reply</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-link me-2"></i>Related Threads</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group list-group-flush">
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <div class="d-flex justify-content-between">
+                                    <span>2025 Tesla Model 3 Refresh - First Impressions</span>
+                                    <span class="badge bg-primary">42</span>
+                                </div>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <div class="d-flex justify-content-between">
+                                    <span>Hyundai Ioniq 6 vs Tesla Model 3 Comparison</span>
+                                    <span class="badge bg-primary">28</span>
+                                </div>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <div class="d-flex justify-content-between">
+                                    <span>Upcoming EV Releases in 2025-2026</span>
+                                    <span class="badge bg-primary">56</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Jump to Reply Button -->
+    <a href="#reply-form" class="jump-to-reply bg-primary text-white">
+        <i class="fas fa-reply"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Like button functionality
+            document.querySelectorAll('.like-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const countElement = this.querySelector('.vote-count');
+                    let count = parseInt(countElement.textContent);
+                    
+                    if (this.classList.contains('active')) {
+                        // Unlike
+                        this.classList.remove('active');
+                        count--;
+                    } else {
+                        // Like
+                        this.classList.add('active');
+                        count++;
+                    }
+                    
+                    countElement.textContent = count;
+                    
+                    // Visual feedback
+                    this.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                });
+            });
+            
+            // Reply button functionality
+            document.querySelectorAll('.reply-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Scroll to reply form
+                    document.getElementById('reply-form').scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Highlight the form briefly
+                    const form = document.getElementById('reply-form');
+                    form.classList.add('highlight-post');
+                    setTimeout(() => {
+                        form.classList.remove('highlight-post');
+                    }, 2000);
+                    
+                    // Focus the textarea
+                    document.querySelector('#reply-form textarea').focus();
+                });
+            });
+            
+            // Form submission
+            document.getElementById('newReplyForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const replyText = this.querySelector('textarea').value.trim();
+                
+                if (replyText) {
+                    // Create new reply element
+                    const newReply = document.createElement('div');
+                    newReply.className = 'd-flex mb-4 new-reply';
+                    newReply.innerHTML = `
+                        <div class="flex-shrink-0 me-3">
+                            <img src="images/avatar5.jpg" class="reply-avatar rounded-circle" alt="Your avatar">
+                        </div>
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <a href="#" class="user-name text-decoration-none">You</a>
+                                <small class="post-time"><i class="far fa-clock me-1"></i>Just now</small>
+                            </div>
+                            <div class="post-content mb-3">
+                                <p>${replyText}</p>
+                            </div>
+                            <div class="post-actions">
+                                <button class="btn btn-sm btn-outline-primary like-btn me-2">
+                                    <i class="fas fa-thumbs-up me-1"></i>
+                                    <span class="vote-count">0</span>
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary reply-btn me-2">
+                                    <i class="fas fa-reply me-1"></i>Reply
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Insert before the reply form
+                    document.querySelector('#reply-form').parentNode.insertBefore(newReply, document.querySelector('#reply-form'));
+                    
+                    // Clear the form
+                    this.querySelector('textarea').value = '';
+                    
+                    // Add event listeners to new buttons
+                    newReply.querySelector('.like-btn').addEventListener('click', function() {
+                        const countElement = this.querySelector('.vote-count');
+                        let count = parseInt(countElement.textContent);
+                        
+                        if (this.classList.contains('active')) {
+                            this.classList.remove('active');
+                            count--;
+                        } else {
+                            this.classList.add('active');
+                            count++;
+                        }
+                        
+                        countElement.textContent = count;
+                    });
+                    
+                    newReply.querySelector('.reply-btn').addEventListener('click', function() {
+                        document.getElementById('reply-form').scrollIntoView({ behavior: 'smooth' });
+                        document.querySelector('#reply-form textarea').focus();
+                    });
+                    
+                    // Update reply count
+                    const replyCountBadge = document.querySelector('.badge.bg-primary');
+                    const currentCount = parseInt(replyCountBadge.textContent);
+                    replyCountBadge.textContent = currentCount + 1;
+                    
+                    // Show success message
+                    const successAlert = document.createElement('div');
+                    successAlert.className = 'alert alert-success alert-dismissible fade show mt-3';
+                    successAlert.innerHTML = `
+                        <i class="fas fa-check-circle me-2"></i>Your reply has been posted successfully!
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    `;
+                    this.parentNode.insertBefore(successAlert, this.nextSibling);
+                }
+            });
+            
+            // Highlight any anchor-linked post
+            if (window.location.hash) {
+                const targetPost = document.querySelector(window.location.hash);
+                if (targetPost) {
+                    targetPost.classList.add('highlight-post');
+                    setTimeout(() => {
+                        targetPost.classList.remove('highlight-post');
+                    }, 3000);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
