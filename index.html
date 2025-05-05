@@ -6,17 +6,116 @@
     <title>Auto Enthusiasts - Vehicle Forum</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="styles.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #28a745;
+            --secondary-color: #f8f9fa;
+            --accent-color: #ffc107;
+            --dark-color: #343a40;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-section {
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80') no-repeat center center;
+            background-size: cover;
+            padding: 8rem 0;
+            margin-bottom: 3rem;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .category-card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .category-card .card-img-top {
+            height: 180px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .category-card:hover .card-img-top {
+            transform: scale(1.05);
+        }
+        
+        .card-header {
+            border-radius: 10px 10px 0 0 !important;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+        }
+        
+        .footer-links a {
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color) !important;
+        }
+        
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hero-content, .category-card {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        .category-card:nth-child(1) { animation-delay: 0.2s; }
+        .category-card:nth-child(2) { animation-delay: 0.4s; }
+        .category-card:nth-child(3) { animation-delay: 0.6s; }
+        .category-card:nth-child(4) { animation-delay: 0.8s; }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <i class="fas fa-car"></i> Auto Enthusiasts
+                <i class="fas fa-car me-2"></i> Auto Enthusiasts
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -29,6 +128,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="categories.html">Categories</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="threads.html">Latest Discussions</a>
+                    </li>
                 </ul>
                 <div class="d-flex">
                     <a href="login.html" class="btn btn-outline-light me-2">Login</a>
@@ -38,30 +140,44 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="hero-section text-white text-center">
-        <div class="container py-5">
-            <h1 class="display-4 fw-bold">Welcome to Auto Enthusiasts</h1>
-            <p class="lead">Your ultimate vehicle discussion forum</p>
-            <a href="categories.html" class="btn btn-primary btn-lg mt-3">Browse Categories</a>
+    <!-- Hero Section with Background Image -->
+    <header class="hero-section text-white">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12 text-center hero-content">
+                    <h1 class="display-4 fw-bold mb-3">Welcome to Auto Enthusiasts</h1>
+                    <p class="lead mb-4">Join our community of passionate vehicle lovers and experts</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="categories.html" class="btn btn-primary btn-lg px-4">
+                            <i class="fas fa-list me-2"></i>Browse Categories
+                        </a>
+                        <a href="register.html" class="btn btn-outline-light btn-lg px-4">
+                            <i class="fas fa-user-plus me-2"></i>Join Now
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- Main  Content -->
+    <!-- Main Content -->
     <main class="container my-5">
         <div class="row">
             <!-- Popular Categories -->
             <div class="col-md-8">
-                <h2 class="mb-4"><i class="fas fa-list"></i> Popular Categories</h2>
+                <h2 class="mb-4"><i class="fas fa-list me-2"></i> Popular Categories</h2>
                 <div class="row">
                     <!-- Category 1 -->
                     <div class="col-md-6 mb-4">
                         <div class="card h-100 category-card">
                             <img src="Mustang.jpeg" class="card-img-top" alt="Cars">
                             <div class="card-body">
-                                <h5 class="card-title">Cars</h5>
+                                <h5 class="card-title"><i class="fas fa-car me-2"></i>Cars</h5>
                                 <p class="card-text">Discuss all things about cars - from sedans to sports cars.</p>
                                 <a href="threads.html?category=cars" class="btn btn-outline-primary">View Threads</a>
+                            </div>
+                            <div class="card-footer bg-transparent">
+                                <small class="text-muted">1,245 threads • 8,763 posts</small>
                             </div>
                         </div>
                     </div>
@@ -71,9 +187,12 @@
                         <div class="card h-100 category-card">
                             <img src="2015-Yamaha-YZF-R1.jpg" class="card-img-top" alt="Motorcycles">
                             <div class="card-body">
-                                <h5 class="card-title">Motorcycles</h5>
+                                <h5 class="card-title"><i class="fas fa-motorcycle me-2"></i>Motorcycles</h5>
                                 <p class="card-text">Everything about bikes - cruisers, sport bikes, and more.</p>
                                 <a href="threads.html?category=motorcycles" class="btn btn-outline-primary">View Threads</a>
+                            </div>
+                            <div class="card-footer bg-transparent">
+                                <small class="text-muted">856 threads • 5,432 posts</small>
                             </div>
                         </div>
                     </div>
@@ -81,11 +200,14 @@
                     <!-- Category 3 -->
                     <div class="col-md-6 mb-4">
                         <div class="card h-100 category-card">
-                            <img src="images/trucks.jpg" class="card-img-top" alt="Trucks">
+                            <img src="Toyota-HILUX.jpg" class="card-img-top" alt="Trucks">
                             <div class="card-body">
-                                <h5 class="card-title">Trucks & SUVs</h5>
+                                <h5 class="card-title"><i class="fas fa-truck-pickup me-2"></i>Trucks & SUVs</h5>
                                 <p class="card-text">Discussion about pickup trucks, SUVs, and off-roading.</p>
                                 <a href="threads.html?category=trucks" class="btn btn-outline-primary">View Threads</a>
+                            </div>
+                            <div class="card-footer bg-transparent">
+                                <small class="text-muted">723 threads • 4,125 posts</small>
                             </div>
                         </div>
                     </div>
@@ -93,11 +215,14 @@
                     <!-- Category 4 -->
                     <div class="col-md-6 mb-4">
                         <div class="card h-100 category-card">
-                            <img src="images/classic.jpg" class="card-img-top" alt="Classic Vehicles">
+                            <img src="Silverstone-classic.jpg" class="card-img-top" alt="Classic Vehicles">
                             <div class="card-body">
-                                <h5 class="card-title">Classic Vehicles</h5>
+                                <h5 class="card-title"><i class="fas fa-history me-2"></i>Classic Vehicles</h5>
                                 <p class="card-text">For enthusiasts of vintage and classic vehicles.</p>
                                 <a href="threads.html?category=classic" class="btn btn-outline-primary">View Threads</a>
+                            </div>
+                            <div class="card-footer bg-transparent">
+                                <small class="text-muted">542 threads • 3,876 posts</small>
                             </div>
                         </div>
                     </div>
@@ -109,25 +234,25 @@
                 <!-- Recent Threads -->
                 <div class="card mb-4">
                     <div class="card-header bg-primary text-white">
-                        <h5 class="mb-0"><i class="fas fa-fire"></i> Hot Threads</h5>
+                        <h5 class="mb-0"><i class="fas fa-fire me-2"></i> Hot Threads</h5>
                     </div>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
-                                <a href="thread.html?id=1">Best electric cars 2025</a>
-                                <small class="text-muted d-block">Cars • 25 replies</small>
+                                <a href="thread.html?id=1" class="text-decoration-none d-block mb-1">Best electric cars 2025</a>
+                                <small class="text-muted"><i class="fas fa-car me-1"></i>Cars • 25 replies</small>
                             </li>
                             <li class="list-group-item">
-                                <a href="thread.html?id=2">Motorcycle maintenance tips</a>
-                                <small class="text-muted d-block">Motorcycles • 18 replies</small>
+                                <a href="thread.html?id=2" class="text-decoration-none d-block mb-1">Motorcycle maintenance tips</a>
+                                <small class="text-muted"><i class="fas fa-motorcycle me-1"></i>Motorcycles • 18 replies</small>
                             </li>
                             <li class="list-group-item">
-                                <a href="thread.html?id=3">Off-roading gear recommendations</a>
-                                <small class="text-muted d-block">Trucks • 12 replies</small>
+                                <a href="thread.html?id=3" class="text-decoration-none d-block mb-1">Off-roading gear recommendations</a>
+                                <small class="text-muted"><i class="fas fa-truck-pickup me-1"></i>Trucks • 12 replies</small>
                             </li>
                             <li class="list-group-item">
-                                <a href="thread.html?id=4">Restoring a '67 Mustang</a>
-                                <small class="text-muted d-block">Classic • 32 replies</small>
+                                <a href="thread.html?id=4" class="text-decoration-none d-block mb-1">Restoring a '67 Mustang</a>
+                                <small class="text-muted"><i class="fas fa-history me-1"></i>Classic • 32 replies</small>
                             </li>
                         </ul>
                     </div>
@@ -136,15 +261,29 @@
                 <!-- Forum Stats -->
                 <div class="card mb-4">
                     <div class="card-header bg-info text-white">
-                        <h5 class="mb-0"><i class="fas fa-chart-bar"></i> Forum Stats</h5>
+                        <h5 class="mb-0"><i class="fas fa-chart-bar me-2"></i> Forum Stats</h5>
                     </div>
                     <div class="card-body">
                         <ul class="list-unstyled">
-                            <li><strong>Threads:</strong> 1,245</li>
-                            <li><strong>Posts:</strong> 8,763</li>
-                            <li><strong>Members:</strong> 2,456</li>
-                            <li><strong>Newest Member:</strong> TurboTom</li>
+                            <li class="mb-2"><i class="fas fa-comments me-2"></i><strong>Threads:</strong> 1,245</li>
+                            <li class="mb-2"><i class="fas fa-reply me-2"></i><strong>Posts:</strong> 8,763</li>
+                            <li class="mb-2"><i class="fas fa-users me-2"></i><strong>Members:</strong> 2,456</li>
+                            <li><i class="fas fa-user-plus me-2"></i><strong>Newest Member:</strong> TurboTom</li>
                         </ul>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0"><i class="fas fa-link me-2"></i> Quick Links</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid gap-2">
+                            <a href="register.html" class="btn btn-outline-success"><i class="fas fa-user-plus me-2"></i>Register</a>
+                            <a href="login.html" class="btn btn-outline-primary"><i class="fas fa-sign-in-alt me-2"></i>Login</a>
+                            <a href="categories.html" class="btn btn-outline-info"><i class="fas fa-list me-2"></i>All Categories</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -152,38 +291,80 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-4">
+    <footer class="bg-dark text-white py-5">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <h5>About AutoEnthusiasts</h5>
-                    <p>Your premier destination for vehicle discussions, tips, and enthusiast community.</p>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="mb-3"><i class="fas fa-car me-2"></i>About AutoEnthusiasts</h5>
+                    <p>Your premier destination for vehicle discussions, tips, and enthusiast community since 2015.</p>
+                    <div class="mt-3">
+                        <a href="#" class="social-icon me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="index.html" class="text-white">Home</a></li>
-                        <li><a href="categories.html" class="text-white">Categories</a></li>
-                        <li><a href="register.html" class="text-white">Register</a></li>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5 class="mb-3">Explore</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="index.html" class="text-white">Home</a></li>
+                        <li class="mb-2"><a href="categories.html" class="text-white">Categories</a></li>
+                        <li class="mb-2"><a href="threads.html" class="text-white">Latest Threads</a></li>
+                        <li><a href="members.html" class="text-white">Members</a></li>
                     </ul>
                 </div>
-                <div class="col-md-3">
-                    <h5>Connect</h5>
-                    <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5 class="mb-3">Account</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="login.html" class="text-white">Login</a></li>
+                        <li class="mb-2"><a href="register.html" class="text-white">Register</a></li>
+                        <li class="mb-2"><a href="profile.html" class="text-white">My Profile</a></li>
+                        <li><a href="settings.html" class="text-white">Settings</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="mb-3">Newsletter</h5>
+                    <p>Subscribe to get updates on new threads and events</p>
+                    <form class="mt-3">
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Your email" aria-label="Your email">
+                            <button class="btn btn-primary" type="button">Subscribe</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <hr>
-            <div class="text-center">
-                <small>&copy; 2025 AutoEnthusiasts. All rights reserved.</small>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <small>&copy; 2025 AutoEnthusiasts. All rights reserved.</small>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <small>
+                        <a href="terms.html" class="text-white me-3">Terms</a>
+                        <a href="privacy.html" class="text-white">Privacy</a>
+                    </small>
+                </div>
             </div>
         </div>
     </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
-    <script src="scripts.js"></script>
+    <script>
+        // Simple animation for elements when they come into view
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.category-card, .card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
 </body>
 </html>
