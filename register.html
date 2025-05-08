@@ -177,7 +177,7 @@
                             <div class="mb-3 form-group">
                                 <label for="password" class="form-label"><b>Password</b></label>
                                 <input type="password" class="form-control" id="password" required 
-`                                       pattern="^(?=.*[A-Za-z])(?=.*\d).{8,}$">
+                                       pattern="^(?=.*[A-Za-z])(?=.*\d).{8,}$">
                                 <div class="d-flex align-items-center mt-2">
                                     <div class="password-strength flex-grow-1 me-2" id="passwordStrength"></div>
                                     <small id="passwordStrengthText" class="text-muted">Weak</small>
@@ -284,7 +284,7 @@
                     <i class="fas fa-check-circle text-success mb-3" style="font-size: 3rem;"></i>
                     <h4>Welcome to AutoEnthusiasts!</h4>
                     <p class="mb-4">Your account has been created successfully. We've sent a confirmation email to <strong id="registeredEmail"></strong>.</p>
-                    <button type="button" class="btn btn-success w-100" data-bs-dismiss="modal">Continue to Your Dashboard</button>
+                    <button type="button" class="btn btn-success w-100" id="continueToDashboard">Continue to Your Dashboard</button>
                 </div>
             </div>
         </div>
@@ -444,6 +444,11 @@
             const formGroups = document.querySelectorAll('.form-group');
             formGroups.forEach((group, index) => {
                 group.style.animationDelay = `${0.1 + (index * 0.1)}s`;
+            });
+            
+            // Redirect to index.html when Continue to Dashboard is clicked
+            document.getElementById('continueToDashboard').addEventListener('click', function() {
+                window.location.href = 'index.html';
             });
         });
     </script>
