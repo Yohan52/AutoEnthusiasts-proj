@@ -177,7 +177,7 @@
                             <div class="mb-3 form-group">
                                 <label for="password" class="form-label"><b>Password</b></label>
                                 <input type="password" class="form-control" id="password" required 
-                                       pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+`                                       pattern="^(?=.*[A-Za-z])(?=.*\d).{8,}$">
                                 <div class="d-flex align-items-center mt-2">
                                     <div class="password-strength flex-grow-1 me-2" id="passwordStrength"></div>
                                     <small id="passwordStrengthText" class="text-muted">Weak</small>
@@ -297,6 +297,23 @@
             const passwordInput = document.getElementById('password');
             const passwordStrength = document.getElementById('passwordStrength');
             const passwordStrengthText = document.getElementById('passwordStrengthText');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            
+            function validatePassword() {
+                const password = passwordInput.value;
+                const confirmPassword = confirmPasswordInput.value;
+                
+                // Check if passwords match
+                if (password && confirmPassword && password !== confirmPassword) {
+                    confirmPasswordInput.setCustomValidity("Passwords don't match");
+                    confirmPasswordInput.classList.add('is-invalid');
+                    return false;
+                } else {
+                    confirmPasswordInput.setCustomValidity('');
+                    confirmPasswordInput.classList.remove('is-invalid');
+                    return true;
+                }
+            }
             
             passwordInput.addEventListener('input', function() {
                 const password = this.value;
@@ -342,19 +359,13 @@
                         passwordStrengthText.style.color = '#20c997';
                         break;
                 }
+                
+                // Validate password match whenever password changes
+                validatePassword();
             });
             
             // Password confirmation check
-            const confirmPasswordInput = document.getElementById('confirmPassword');
-            confirmPasswordInput.addEventListener('input', function() {
-                if (this.value !== passwordInput.value) {
-                    this.setCustomValidity("Passwords don't match");
-                    this.classList.add('is-invalid');
-                } else {
-                    this.setCustomValidity('');
-                    this.classList.remove('is-invalid');
-                }
-            });
+            confirmPasswordInput.addEventListener('input', validatePassword);
             
             // Interest badges selection
             const interestBadges = document.querySelectorAll('.interest-badge');
@@ -406,6 +417,9 @@
                 event.preventDefault();
                 event.stopPropagation();
                 
+                // Validate password match
+                const passwordValid = validatePassword();
+                
                 // Manually validate interests
                 if (selectedInterests.length === 0) {
                     selectedInterestsInput.setCustomValidity('Please select at least one interest');
@@ -413,7 +427,7 @@
                     selectedInterestsInput.setCustomValidity('');
                 }
                 
-                if (form.checkValidity()) {
+                if (form.checkValidity() && passwordValid) {
                     // Show success modal
                     document.getElementById('registeredEmail').textContent = document.getElementById('email').value;
                     const successModal = new bootstrap.Modal(document.getElementById('successModal'));
