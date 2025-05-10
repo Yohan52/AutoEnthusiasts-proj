@@ -108,6 +108,36 @@
         .category-card:nth-child(2) { animation-delay: 0.4s; }
         .category-card:nth-child(3) { animation-delay: 0.6s; }
         .category-card:nth-child(4) { animation-delay: 0.8s; }
+
+        /* User dropdown styles */
+        .dropdown-menu-dark {
+            background-color: #343a40;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-menu-dark .dropdown-item {
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.2s;
+        }
+
+        .dropdown-menu-dark .dropdown-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .dropdown-menu-dark .dropdown-divider {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .user-icon {
+            font-size: 1.25rem;
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .user-icon:hover {
+        color: var(--primary-color);
+}
     </style>
 </head>
 <body>
@@ -133,8 +163,25 @@
                     </li>
                 </ul>
                 <div class="d-flex">
-                    <a href="login.html" class="btn btn-outline-light me-2">Login</a>
-                    <a href="register.html" class="btn btn-primary">Register</a>
+                    <!-- Login/Register buttons (shown when not logged in) -->
+                    <div id="guestButtons">
+                        <a href="login.html" class="btn btn-outline-light me-2">Login</a>
+                        <a href="register.html" class="btn btn-primary">Register</a>
+                    </div>
+                    
+                    <!-- User dropdown (shown when logged in) -->
+                    <div id="userDropdown" class="dropdown d-none">
+                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle me-2" style="font-size: 1.25rem;"></i>
+                            <span id="usernameDisplay">Username</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="dropdownUser">
+                            <li><a class="dropdown-item" href="profile.html"><i class="fas fa-user-circle me-2"></i>Profile</a></li>
+                            <li><a class="dropdown-item" href="settings.html"><i class="fas fa-cog me-2"></i>Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" id="logoutBtn"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -351,6 +398,34 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        // Check if user is logged in (in a real app, this would check with your backend)
+        function checkLoginStatus() {
+            // For demo purposes, we'll use localStorage to track login status
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const username = localStorage.getItem('username') || 'User';
+            
+            if (isLoggedIn) {
+                document.getElementById('guestButtons').classList.add('d-none');
+                document.getElementById('userDropdown').classList.remove('d-none');
+                document.getElementById('usernameDisplay').textContent = username;
+            } else {
+                document.getElementById('guestButtons').classList.remove('d-none');
+                document.getElementById('userDropdown').classList.add('d-none');
+            }
+        }
+        
+        // Logout functionality
+        document.getElementById('logoutBtn')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('username');
+            checkLoginStatus();
+            window.location.href = 'index.html';
+        });
+        
+        // Check login status when page loads
+        document.addEventListener('DOMContentLoaded', checkLoginStatus);
+
         // Simple animation for elements when they come into view
         document.addEventListener('DOMContentLoaded', function() {
             const observer = new IntersectionObserver((entries) => {

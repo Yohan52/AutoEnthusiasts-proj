@@ -18,6 +18,9 @@
         body {
             background-color: #f5f5f5;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         
         .card {
@@ -135,7 +138,7 @@
     </style>
 </head>
 <body>
-    <main class="container my-5">
+    <main class="container my-auto py-5">
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6">
                 <div class="card">
@@ -159,7 +162,7 @@
                             </div>
                             
                             <div class="mb-3 form-group">
-                                <label for="username" class="form-label"><B>Username</b></b></label>
+                                <label for="username" class="form-label"><b>Username</b></label>
                                 <div class="input-group">
                                     <span class="input-group-text">@</span>
                                     <input type="text" class="form-control" id="username" required>
@@ -193,7 +196,7 @@
                             </div>
                             
                             <div class="mb-3 form-group">
-                                <label class="form-label">Vehicle Interests (select at least one)</label>
+                                <label class="form-label"><b>Vehicle Interests</b> (select at least one)</label>
                                 <div class="d-flex flex-wrap mt-2" id="interestsContainer">
                                     <span class="interest-badge" data-interest="cars">
                                         <i class="fas fa-car me-1"></i> Cars
@@ -283,8 +286,8 @@
                 <div class="modal-body text-center py-4">
                     <i class="fas fa-check-circle text-success mb-3" style="font-size: 3rem;"></i>
                     <h4>Welcome to AutoEnthusiasts!</h4>
-                    <p class="mb-4">Your account has been created successfully. We've sent a confirmation email to <strong id="registeredEmail"></strong>.</p>
-                    <button type="button" class="btn btn-success w-100" id="continueToDashboard">Continue to Your Dashboard</button>
+                    <p class="mb-4">Your account has been created successfully.</p>
+                    <button type="button" class="btn btn-success w-100" id="continueToDashboard">Continue to Login</button>
                 </div>
             </div>
         </div>
@@ -428,13 +431,20 @@
                 }
                 
                 if (form.checkValidity() && passwordValid) {
+                    // Store registration data in localStorage (for demo purposes)
+                    const userData = {
+                        firstName: document.getElementById('firstName').value,
+                        lastName: document.getElementById('lastName').value,
+                        username: document.getElementById('username').value,
+                        email: document.getElementById('email').value,
+                        interests: selectedInterests
+                    };
+                    
+                    localStorage.setItem('userData', JSON.stringify(userData));
+                    
                     // Show success modal
-                    document.getElementById('registeredEmail').textContent = document.getElementById('email').value;
                     const successModal = new bootstrap.Modal(document.getElementById('successModal'));
                     successModal.show();
-                    
-                    // Here you would normally submit the form to your backend
-                    // For demo purposes, we're just showing the success modal
                 }
                 
                 form.classList.add('was-validated');
@@ -446,9 +456,9 @@
                 group.style.animationDelay = `${0.1 + (index * 0.1)}s`;
             });
             
-            // Redirect to index.html when Continue to Dashboard is clicked
+            // Redirect to login when Continue is clicked
             document.getElementById('continueToDashboard').addEventListener('click', function() {
-                window.location.href = 'index.html';
+                window.location.href = 'login.html';
             });
         });
     </script>
