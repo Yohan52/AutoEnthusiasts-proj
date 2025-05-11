@@ -277,7 +277,8 @@
                 icon: "fa-motorcycle",
                 threads: 187,
                 description: "Everything about motorcycles - cruisers, sport bikes, touring, and more.",
-                latest: "New rider gear recommendations"
+                latest: "New rider gear recommendations",
+                link: "motorcycle.html"
             },
             {
                 id: "trucks",
@@ -301,7 +302,8 @@
                 icon: "fa-charging-station",
                 threads: 176,
                 description: "EV technology, charging infrastructure, and future developments.",
-                latest: "Long-term Tesla battery health"
+                latest: "Long-term Tesla battery health",
+                link: "electric.html"
             }
         ];
 
@@ -326,7 +328,7 @@
             
             categoriesToDisplay.forEach(category => {
                 const categoryElement = document.createElement('a');
-                categoryElement.href = `threads.html?category=${category.id}`;
+                categoryElement.href = category.link || `threads.html?category=${category.id}`;
                 categoryElement.className = 'list-group-item list-group-item-action category-card';
                 categoryElement.innerHTML = `
                     <div class="d-flex w-100 justify-content-between">
